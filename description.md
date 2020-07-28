@@ -14,4 +14,4 @@
 ### при beamOn 1000
 
 
-![Описание картинки с котиком](ht tps://miro.medium.com/proxy/1*YgtCXuRGmPfPg2PogXVCfQ.png)
+![](//placehold.it/150x100)
