@@ -51,12 +51,11 @@ void RunAction::BeginOfRunAction(const G4Run* run)
    // tupleId->analysisManager = analysisManager;
     int TId = analysisManager->CreateNtuple("LT", "Detector");
     analysisManager->CreateNtupleDColumn("Z");
+    analysisManager->CreateNtupleDColumn("energy");
     analysisManager->FinishNtuple();
     
     
 }
-
-
 
 void RunAction::EndOfRunAction(const G4Run* run){
     // Save histograms
