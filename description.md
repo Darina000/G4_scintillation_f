@@ -14,4 +14,4 @@
 ### при beamOn 1000
 
 
-![](//placehold.it/150x100)
+![](//https://miro.medium.com/proxy/1*YgtCXuRGmPfPg2PogXVCfQ.png)
