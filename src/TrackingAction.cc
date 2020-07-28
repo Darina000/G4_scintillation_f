@@ -105,14 +105,22 @@ void TrackingAction::PreUserTrackingAction(const G4Track* track)
     
     
     if ((track->GetTrackID() > 1 )&& (track->GetDefinition()  == G4Electron::ElectronDefinition()) ){
-               cout << "................" << G4endl;
+                cout << "................" << G4endl;
    // cout << "pre" << endl;
     G4double z = (track->GetPosition()).z();
+    G4double energy  = track->GetKineticEnergy();
+    
+        cout << energy << endl;
     //G4double y = (track->GetPosition()).y();
     //G4double x = (track->GetPosition()).x();
         if (z > -3.5*mm && z< 3.5*mm){
     analysisManager->FillNtupleDColumn(0, z);
+    analysisManager->FillNtupleDColumn(0, energy);
     analysisManager -> AddNtupleRow();
+    
+            
+            
+    analysisManager->FillNtupleDColumn(0, z);
   //  cout << x << " " << ": = x" << endl;
   //  cout << y << " " << ": = y" << endl;
     cout << z << " " << ": = z" << endl;
