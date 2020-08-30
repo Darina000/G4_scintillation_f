@@ -10,17 +10,21 @@
 #include "G4RunManager.hh"
 #include "G4UImanager.hh"
 #include "Randomize.hh"
-
+#include "PhysicsList.hh"
 #include "globals.hh"
-
+#include "G4ProcessManager.hh"
 #include "DetectorConstruction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "RunAction.hh"
-#include "PhysicsList.hh"
+
 #include "EventAction.hh"
 #include "SteppingAction.hh"
 #include "StackingAction.hh"
 #include "TrackingAction.hh"
+
+#include "G4Types.hh"
+//#include "G4EmPenelopePhysics.hh";
+
 
 #include<G4UIterminal.hh>
 #include<G4VisExecutive.hh>
@@ -32,19 +36,25 @@
 #include<unistd.h>
 #include<time.h>
 #include "QGSP_BERT.hh"
-
-
+#include "PhysicsList.hh"
+#include "G4EmStandardPhysics_option4.hh"
 #ifdef G4MULTITHREADED
 #include "G4MTRunManager.hh"
 #else
 #include "G4RunManager.hh"
 #endif
-
-#include "G4UImanager.hh"
 #include "QBBC.hh"
-
+#include "G4UImanager.hh"
+#include "FTFP_BERT_HP.hh"
+#include "FTFP_BERT.hh"
+//#include "QGSP_FTFP_BERT.hh"
 #include "G4UIExecutive.hh"
 
+//#include "G4PenelopeComptonModel.hh";
+//#include "G4ComptonScattering.hh";
+#include "G4OpticalPhysics.hh";
+//#include "G4PenelopeIonisationModel.hh";
+//#include "G4eIonisation.hh";
 using namespace std;
 ofstream outfile;
 
@@ -75,9 +85,11 @@ outfile.open("outfile.dat");
 
 CLHEP::HepRandom::setTheSeed(time(0)+getpid());
     
-G4VUserPhysicsList *p = new QGSP_BERT;
-runManager->SetUserInitialization(p);
     
+     G4VModularPhysicsList* physicsList = new PhysicsList;
+    
+    
+     runManager->SetUserInitialization(physicsList);
 
     // set mandatory initialization classes
     DetectorConstruction* detector;
@@ -116,8 +128,9 @@ visManager->Initialize();
     
     
      runManager->Initialize();
-/*
+
     G4UImanager* UImanager = G4UImanager::GetUIpointer();
+    
     
     runManager->Initialize();
     if ( ! ui ) {
@@ -132,8 +145,8 @@ visManager->Initialize();
        ui->SessionStart();
        delete ui;
      }
-*/
-      
+
+    
 G4UImanager * UI = G4UImanager::GetUIpointer();
 G4UIsession * session = new G4UIterminal();
 
@@ -150,3 +163,4 @@ delete runManager;
 return 0;
 
 }
+
